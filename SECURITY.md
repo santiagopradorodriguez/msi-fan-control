@@ -1,23 +1,23 @@
 # Política de Seguridad y Modo Bóveda (Vault Mode)
 
-En **MSI Fan Control**, la seguridad del hardware es nuestra principal prioridad. Sabemos que manipular los ventiladores y la memoria del Embedded Controller (EC) en portátiles MSI puede generar desconfianza, especialmente en sistemas Linux. 
+En **MSI Fan Control**, la seguridad del hardware es una prioridad crítica. La manipulación de los ventiladores y la memoria del Embedded Controller (EC) en portátiles MSI requiere un manejo riguroso de privilegios.
 
 ## El Problema de `ec_sys`
-Para controlar los ventiladores en Linux desde el espacio de usuario (userspace), muchas herramientas requieren cargar el módulo del kernel `ec_sys` con el parámetro `write_support=1`. 
-Dejar la memoria del EC abierta para escritura de forma permanente es un **riesgo crítico de seguridad y estabilidad**. Cualquier proceso malicioso o con errores podría sobrescribir la memoria del EC, lo que puede resultar en fallos de hardware o cuelgues del sistema (kernel panics).
+Para controlar los ventiladores en Linux desde el espacio de usuario (userspace), las herramientas habitualmente requieren cargar el módulo del kernel `ec_sys` con el parámetro `write_support=1`. 
+Mantener la memoria del EC abierta para escritura de forma continua representa un riesgo de seguridad y estabilidad. Cualquier proceso malicioso o defectuoso podría sobrescribir la memoria del EC, desencadenando fallos de hardware o cuelgues del sistema (kernel panics).
 
-## Nuestra Solución: El Modo Bóveda (Vault Mode)
-Hemos inventado el **Modo Bóveda** utilizando nuestro script `isw_safe_wrapper.sh`.
+## Solución Implementada: Modo Bóveda (Vault Mode)
+Se ha implementado el **Modo Bóveda** mediante el script `isw_safe_wrapper.sh`.
 
-### ¿Cómo funciona?
-En lugar de dejar el soporte de escritura abierto todo el tiempo, el Modo Bóveda funciona bajo un principio de privilegio mínimo en el tiempo:
-1. El soporte de escritura del EC (`write_support=0`) permanece desactivado el **99.9% del tiempo**.
-2. Cuando el usuario aplica un cambio en los ventiladores a través de la interfaz web, el backend llama al wrapper.
-3. El wrapper activa momentáneamente el soporte de escritura (`write_support=1`).
-4. Se ejecuta el comando de escritura de los nuevos valores.
-5. **Inmediatamente**, en una fracción de segundo, se vuelve a bloquear el EC devolviendo el valor a `write_support=0`.
+### Funcionamiento Técnico
+El Modo Bóveda opera bajo el principio de privilegio mínimo temporal. En lugar de habilitar la escritura de forma constante:
+1. El soporte de escritura del EC (`write_support=0`) permanece desactivado por defecto.
+2. Cuando se solicita un cambio en la configuración de ventiladores, el backend invoca el wrapper.
+3. El wrapper activa el soporte de escritura en el kernel (`write_support=1`).
+4. Se ejecutan las instrucciones de escritura de los nuevos valores en el EC.
+5. Inmediatamente después de la escritura, se restablece el bloqueo del EC devolviendo el valor a `write_support=0`.
 
-Este enfoque garantiza que el sistema esté blindado casi permanentemente, mitigando enormemente la ventana de vulnerabilidad asociada a la modificación de hardware en Linux y eliminando el riesgo de dejar la memoria expuesta a otros procesos.
+Este enfoque minimiza la ventana de vulnerabilidad, garantizando que la memoria del hardware se mantenga protegida frente a otros procesos del sistema.
 
 ## Reporte de Vulnerabilidades
-Si encuentras algún fallo de seguridad, vulnerabilidad en el código o un comportamiento extraño en la gestión del kernel, por favor, no crees un *Issue* público. Contáctanos en privado o abre un reporte de seguridad privado en GitHub para que podamos mitigarlo de inmediato antes de hacerlo público.
+En caso de detectar una vulnerabilidad de seguridad, fallo en el código o un comportamiento anómalo en la gestión del kernel, solicitamos no abrir un *Issue* público. Por favor, utilice los canales de reporte de seguridad privados en GitHub para permitir la mitigación oportuna del problema.

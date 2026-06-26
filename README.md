@@ -1,39 +1,39 @@
-# ❄️ MSI Fan Control para Linux
+# MSI Fan Control para Linux
 
 ![License](https://img.shields.io/badge/License-MIT-blue.svg)
 ![Python](https://img.shields.io/badge/Python-3.8%2B-green.svg)
 ![Flask](https://img.shields.io/badge/Framework-Flask-black.svg)
 ![Platform](https://img.shields.io/badge/Platform-Linux-orange.svg)
 
-**MSI Fan Control** es una aplicación moderna, segura y elegante para controlar la velocidad de los ventiladores en portátiles MSI bajo sistemas operativos Linux. 
+**MSI Fan Control** es una aplicación orientada al control de la velocidad de los ventiladores en portátiles MSI bajo sistemas operativos Linux.
 
-Combina un potente backend en Python (Flask), una envoltura nativa en PyQt5 y una hermosa interfaz de usuario con efectos Glassmorphism y Dark Mode premium. Además, introduce el innovador **Modo Bóveda (Vault Mode)** para garantizar la máxima seguridad en la escritura del *Embedded Controller* (EC).
+La arquitectura se compone de un backend en Python (Flask), un cliente nativo en PyQt5 y una interfaz de usuario basada en Glassmorphism y Dark Mode. Además, implementa el **Modo Bóveda (Vault Mode)** para gestionar de forma controlada la escritura en el *Embedded Controller* (EC).
 
-## ✨ Características Principales
+## Características Principales
 
-- 🚀 **Interfaz de Usuario Premium**: Diseño moderno con temática oscura y elementos *Glassmorphism* (cristal esmerilado).
-- 🐍 **Backend Robusto**: Construido con Python y Flask, sirviendo peticiones de forma rápida y eficiente en el puerto `5000`.
-- 🪟 **Integración de Escritorio**: Se ejecuta como una ventana nativa de escritorio gracias a PyQt5 (`native_window.py`).
-- 🛡️ **Máxima Seguridad (Modo Bóveda)**: Escritura segura del EC mediante `isw_safe_wrapper.sh`. El soporte de escritura se activa sólo por milisegundos durante la aplicación de los cambios, manteniendo la memoria de tu hardware bloqueada y segura el 99.9% del tiempo.
+- **Interfaz de Usuario**: Diseño técnico con temática oscura y elementos Glassmorphism.
+- **Backend Robusto**: Construido con Python y Flask, operando sobre el puerto `5000`.
+- **Integración de Escritorio**: Ejecución como ventana nativa mediante PyQt5 (`native_window.py`).
+- **Máxima Seguridad (Modo Bóveda)**: Escritura controlada del EC mediante `isw_safe_wrapper.sh`. El soporte de escritura se activa únicamente durante la aplicación de los cambios, manteniendo la memoria bloqueada la mayor parte del tiempo operativo.
 
-## 📐 Arquitectura
+## Arquitectura
 
-- **`app.py`**: Servidor Flask que expone la API para el control de los ventiladores.
-- **Frontend**: HTML, CSS, y JavaScript puro para una experiencia fluida.
-- **`isw_safe_wrapper.sh`**: Script de bash encargado de la gestión segura de los permisos de `ec_sys`.
-- **`start.sh` / `native_window.py`**: Launcher que inicializa el servidor Flask en segundo plano y despliega la interfaz usando PyQt5.
+- **`app.py`**: Servidor Flask que expone la API para el control del hardware.
+- **Frontend**: HTML, CSS y JavaScript para la gestión de la interfaz.
+- **`isw_safe_wrapper.sh`**: Script de bash encargado de la gestión de permisos del módulo `ec_sys`.
+- **`start.sh` / `native_window.py`**: Proceso inicial que levanta el servidor Flask y la interfaz PyQt5.
 
-## 🛠️ Requisitos Previos
+## Requisitos Previos
 
 - Sistema Operativo: **Linux**
 - **Python 3.8+**
-- Módulo del kernel `ec_sys` disponible (suele estar incluido en la mayoría de kernels modernos).
+- Módulo del kernel `ec_sys` disponible (presente en la mayoría de kernels modernos).
 - Dependencias del sistema (ej. en Debian/Ubuntu):
   ```bash
   sudo apt install python3-pyqt5 python3-pip
   ```
 
-## 📦 Instalación
+## Instalación
 
 1. Clona este repositorio:
    ```bash
@@ -46,30 +46,30 @@ Combina un potente backend en Python (Flask), una envoltura nativa en PyQt5 y un
    pip install flask pyqt5 PyQtWebEngine
    ```
 
-3. Da permisos de ejecución a los scripts:
+3. Asigna permisos de ejecución a los scripts:
    ```bash
    chmod +x start.sh isw_safe_wrapper.sh
    ```
 
-## 🚀 Uso
+## Uso
 
-Para arrancar la aplicación, simplemente ejecuta el launcher:
+Para iniciar la aplicación, ejecuta el script de arranque:
 
 ```bash
 ./start.sh
 ```
 
-El script `start.sh` se encargará de levantar el servidor Flask internamente y lanzará la ventana de la aplicación.
-*(Nota: Dependiendo de la configuración de tu sistema, al aplicar cambios puede que se solicite contraseña de administrador para el script wrapper, necesario para escribir en el EC).*
+El script `start.sh` iniciará el servidor Flask y la ventana de la aplicación.
+*(Nota: Al aplicar cambios, el sistema solicitará credenciales de administrador para ejecutar el wrapper, requisito indispensable para la escritura en el EC).*
 
-## 🔒 Seguridad
+## Seguridad
 
-Por favor, lee nuestro documento de [Seguridad (SECURITY.md)](SECURITY.md) para entender a fondo cómo el **Modo Bóveda** protege tu ordenador evitando los riesgos tradicionales de habilitar `write_support=1` en el módulo `ec_sys`.
+Consulte el documento de [Seguridad (SECURITY.md)](SECURITY.md) para detalles técnicos sobre el funcionamiento del **Modo Bóveda** y cómo mitiga los riesgos asociados a la habilitación de `write_support=1` en el módulo `ec_sys`.
 
-## 🤝 Contribuciones
+## Contribuciones
 
-¡Las contribuciones son bienvenidas! Si deseas mejorar el código, la interfaz o la compatibilidad, consulta nuestra [Guía de Contribución (CONTRIBUTING.md)](CONTRIBUTING.md).
+Las contribuciones son bienvenidas. Para sugerencias y reporte de errores, consulte la [Guía de Contribución (CONTRIBUTING.md)](CONTRIBUTING.md).
 
-## 📄 Licencia
+## Licencia
 
-Este proyecto está distribuido bajo la licencia MIT. Eres libre de utilizarlo y modificarlo.
+Este proyecto está distribuido bajo la licencia MIT.

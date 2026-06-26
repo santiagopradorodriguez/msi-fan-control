@@ -1,33 +1,31 @@
 # Guía de Contribución
 
-¡Gracias por tu interés en contribuir a **MSI Fan Control**! Tu ayuda es fundamental para mejorar esta herramienta para la comunidad de Linux.
+Gracias por su interés en contribuir a **MSI Fan Control**. Su participación ayuda a mejorar la estabilidad y las características de esta herramienta en entornos Linux.
 
 ## ¿Cómo puedo contribuir?
 
 ### 1. Reportando Bugs
-Si encuentras un error, por favor abre un *Issue* en el repositorio. Asegúrate de incluir:
-- Tu modelo de portátil MSI.
-- Tu distribución de Linux y versión del kernel.
-- Pasos detallados para reproducir el problema.
+En caso de identificar un error, por favor abra un *Issue* en el repositorio. Asegúrese de incluir:
+- Modelo específico del portátil MSI.
+- Distribución de Linux y versión del kernel.
+- Pasos técnicos detallados para reproducir el fallo.
 
 ### 2. Sugiriendo Funcionalidades
-Nos encanta escuchar nuevas ideas, especialmente mejoras para la interfaz (glassmorphism) o optimizaciones del backend (Flask). Abre un *Issue* con la etiqueta `enhancement`.
+Las sugerencias de nuevas características son bienvenidas. Puede abrir un *Issue* con la etiqueta `enhancement` para discutir mejoras en la arquitectura del backend o en la interfaz.
 
 ### 3. Contribuyendo con Código
-Si deseas aportar código (mejoras en Python, HTML/JS/CSS o Bash), sigue estos pasos:
+Para aportar código (Python, HTML/JS/CSS o Bash), siga estos pasos:
 
-1. **Haz un Fork** del repositorio.
-2. **Clona** tu fork localmente: `git clone https://github.com/TU_USUARIO/msi-fan-control.git`
-3. **Crea una rama** para tu funcionalidad o corrección:
+1. **Haga un Fork** del repositorio.
+2. **Clone** su fork localmente: `git clone https://github.com/TU_USUARIO/msi-fan-control.git`
+3. **Cree una rama** para la funcionalidad o corrección:
    - `git checkout -b feature/nueva-funcionalidad`
    - `git checkout -b bugfix/nombre-del-bug`
-4. **Haz tus cambios** y asegúrate de probarlos localmente ejecutando `start.sh`.
-5. **Haz Commit** de tus cambios usando mensajes claros y descriptivos.
-6. **Sube los cambios** a tu fork: `git push origin nombre-de-la-rama`
-7. **Abre un Pull Request** (PR) en nuestro repositorio original.
+4. **Implemente los cambios** y verifique la correcta ejecución local mediante `start.sh`.
+5. **Haga Commit** de los cambios utilizando mensajes descriptivos y directos.
+6. **Suba los cambios** a su fork: `git push origin nombre-de-la-rama`
+7. **Abra un Pull Request** (PR) en el repositorio principal.
 
 ## Estilo de Código
-- **Backend (Python)**: Seguimos las convenciones de PEP 8.
-- **Frontend**: Mantenemos un diseño limpio con modo oscuro (Dark Mode) y estilo Glassmorphism. Intenta mantener la consistencia en el diseño UI/UX.
-
-¡Esperamos con entusiasmo tus aportes!
+- **Backend (Python)**: Es obligatorio seguir las convenciones de PEP 8.
+- **Frontend**: Se debe mantener la coherencia con el diseño existente (Dark Mode, Glassmorphism).
