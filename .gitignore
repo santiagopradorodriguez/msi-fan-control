@@ -1,0 +1,31 @@
+# Archivos compilados de Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Entornos Virtuales
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Archivos de SO
+.DS_Store
+Thumbs.db
+
+# Flask
+instance/
+.webassets-cache
+
+# IDEs y Editores
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Builds y Distribución
+build/
+dist/
+*.egg-info/
+venv/
